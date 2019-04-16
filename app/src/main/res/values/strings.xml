@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">WhatJaspionFinal</string>
+    <string name="app_digite_seu_email">Digite seu e-mail</string>
+    <string name="app_digite_sua_senha">Digite sua senha</string>
+    <string name="app_logar">Logar</string>
+    <string name="app_cadastre_se">Não tem conta ainda? Cadastre-se</string>
+    <string name="app_digite_seu_nome">Digite seu nome</string>
+    <string name="app_cadastrar">Cadastrar</string>
+</resources>
