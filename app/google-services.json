@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "718495157621",
+    "firebase_url": "https://whatjaspionfinal.firebaseio.com",
+    "project_id": "whatjaspionfinal",
+    "storage_bucket": "whatjaspionfinal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718495157621:android:cd312a4d1445b870",
+        "android_client_info": {
+          "package_name": "com.whatjaspionfinal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "718495157621-t22n8kftmiebtcn9musna4hst8gohu0h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.whatjaspionfinal",
+            "certificate_hash": "13a4514d2c311fba857cd0b5fe3f96d86b00212b"
+          }
+        },
+        {
+          "client_id": "718495157621-pbiqgcoltr7tfsg8om8f8f12qhhblldd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNU2lRnItfaETriOU4x3bzQE4EDtSGVQk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "718495157621-pbiqgcoltr7tfsg8om8f8f12qhhblldd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
