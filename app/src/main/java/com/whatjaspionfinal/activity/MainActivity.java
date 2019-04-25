@@ -1,5 +1,6 @@
 package com.whatjaspionfinal.activity;
 
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -8,8 +9,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.ogaclejapan.smarttablayout.SmartTabLayout;
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 import com.whatjaspionfinal.R;
 import com.whatjaspionfinal.config.ConfiguracaoFirebase;
+import com.whatjaspionfinal.fragment.ContatosFragment;
+import com.whatjaspionfinal.fragment.ConversasFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +31,19 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbarPrincipal);
         toolbar.setTitle("WhatJaspion");
         setSupportActionBar( toolbar );
+
+        FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
+                getSupportFragmentManager(),
+                FragmentPagerItems.with(this)
+                .add("Conversas", ConversasFragment.class)
+                .add("Contatos", ContatosFragment.class)
+                .create()
+        );
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+        viewPager.setAdapter(adapter);
+
+        SmartTabLayout viewPagerTab = (SmartTabLayout) findViewById(R.id.viewPagerTab);
+        viewPagerTab.setViewPager(viewPager);
     }
 
     @Override
