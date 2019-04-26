@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.whatjaspionfinal.R;
 import com.whatjaspionfinal.config.ConfiguracaoFirebase;
+import com.whatjaspionfinal.helper.Base64Custon;
 import com.whatjaspionfinal.model.Usuario;
 
 public class CadastroActivity extends AppCompatActivity {
@@ -33,7 +34,7 @@ public class CadastroActivity extends AppCompatActivity {
         campoSenha = findViewById(R.id.editSenha);
     }
 
-    public void salvarUsuarioFirebase(Usuario usuario){
+    public void salvarUsuarioFirebase(final Usuario usuario){
         autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
         autenticacao.createUserWithEmailAndPassword(
             usuario.getEmail(),usuario.getSenha()
@@ -44,6 +45,17 @@ public class CadastroActivity extends AppCompatActivity {
                 if( task.isSuccessful() ){
                     Toast.makeText(CadastroActivity.this,"Sucesso ao cadastrar usuario", Toast.LENGTH_SHORT).show();
                     finish();
+
+                    try{
+
+                        String identificadorUsuario = Base64Custon.codificarBase64(usuario.getEmail());
+                        usuario.setId_usuario(identificadorUsuario);
+                        usuario.salvar();
+
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }else{
                     String excecao = "";
                     try{

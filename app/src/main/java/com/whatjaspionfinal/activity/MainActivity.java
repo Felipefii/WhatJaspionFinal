@@ -1,5 +1,6 @@
 package com.whatjaspionfinal.activity;
 
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -63,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
                 deslogarUsuario();
                 finish();
                 break;
+            case R.id.menuConfiguracoes:
+                abrirConfiguracoes();
+                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -74,5 +78,10 @@ public class MainActivity extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void abrirConfiguracoes(){
+        Intent intent = new Intent(MainActivity.this, ConfiguracoesActivity.class);
+        startActivity(intent);
     }
 }
