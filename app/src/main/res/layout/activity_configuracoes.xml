@@ -64,4 +64,29 @@
             android:background="@drawable/ic_editar_azul_24dp" />
     </LinearLayout>
 
+    <ImageButton
+        android:id="@+id/ibCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/circleImageViewFotoPerfil"
+        app:layout_constraintEnd_toStartOf="@+id/ibGaleria"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/circleImageViewFotoPerfil"
+        app:layout_constraintVertical_bias="0.93"
+        app:srcCompat="@drawable/ic_camera_alt_black_24dp" />
+
+    <ImageButton
+        android:id="@+id/ibGaleria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/circleImageViewFotoPerfil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ibCamera"
+        app:layout_constraintTop_toTopOf="@+id/circleImageViewFotoPerfil"
+        app:layout_constraintVertical_bias="0.93"
+        app:srcCompat="@drawable/ic_collections_black_24dp" />
+
 </android.support.constraint.ConstraintLayout>
