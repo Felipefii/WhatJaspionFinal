@@ -4,8 +4,11 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +19,8 @@ import android.widget.ImageButton;
 
 import com.whatjaspionfinal.R;
 import com.whatjaspionfinal.helper.Permissao;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ConfiguracoesActivity extends AppCompatActivity {
 
@@ -28,6 +33,7 @@ public class ConfiguracoesActivity extends AppCompatActivity {
     private ImageButton imageButtonCamera, imageButtonGaleria;
     private static final int SELECAO_CAMERA = 100;
     private static final int SELECAO_GALERIA = 200;
+    private CircleImageView circleImageViewPerfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,7 @@ public class ConfiguracoesActivity extends AppCompatActivity {
 
         imageButtonCamera = findViewById(R.id.ibCamera);
         imageButtonGaleria = findViewById(R.id.ibGaleria);
+        circleImageViewPerfil = findViewById(R.id.circleImageViewFotoPerfil);
 
         //validar permissoes
         Permissao.validarPermissoes(permissoesNecessarias, this,1);
@@ -58,6 +65,45 @@ public class ConfiguracoesActivity extends AppCompatActivity {
 
             }
         });
+
+        imageButtonGaleria.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                if (i.resolveActivity(getPackageManager()) != null){
+                    startActivityForResult(i, SELECAO_GALERIA);
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK){
+            Bitmap imagem = null;
+
+            try {
+                switch (requestCode){
+
+                    case SELECAO_CAMERA:
+                        imagem = (Bitmap) data.getExtras().get("data");
+                        break;
+                    case SELECAO_GALERIA:
+                        Uri localImagemSelecionada = data.getData();
+                        imagem = MediaStore.Images.Media.getBitmap(getContentResolver(), localImagemSelecionada);
+                        break;
+                }
+                if (imagem != null){
+                    circleImageViewPerfil.setImageBitmap(imagem);
+                }
+
+            }catch (Exception e ){
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
