@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.whatjaspionfinal"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -38,6 +38,9 @@ dependencies {
 
     //arredondamento de imagens
     implementation 'de.hdodenhof:circleimageview:3.0.0'
+
+    //dependencias download de arquivos
+    implementation 'com.firebaseui:firebase-ui-storage:4.3.1'
 
     implementation "androidx.constraintlayout:constraintlayout:1.1.3"
 

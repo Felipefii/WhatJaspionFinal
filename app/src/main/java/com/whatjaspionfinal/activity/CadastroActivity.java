@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.whatjaspionfinal.R;
 import com.whatjaspionfinal.config.ConfiguracaoFirebase;
 import com.whatjaspionfinal.helper.Base64Custon;
+import com.whatjaspionfinal.helper.UsuarioFireBase;
 import com.whatjaspionfinal.model.Usuario;
 
 public class CadastroActivity extends AppCompatActivity {
@@ -43,7 +44,11 @@ public class CadastroActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if( task.isSuccessful() ){
-                    Toast.makeText(CadastroActivity.this,"Sucesso ao cadastrar usuario", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CadastroActivity.this,
+                            "Sucesso ao cadastrar usuario",
+                            Toast.LENGTH_SHORT).show();
+                    UsuarioFireBase.atualizarNomeUsuario(usuario.getNome());
+
                     finish();
 
                     try{
