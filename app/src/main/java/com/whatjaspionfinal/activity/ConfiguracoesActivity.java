@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -33,6 +34,7 @@ import com.whatjaspionfinal.config.ConfiguracaoFirebase;
 import com.whatjaspionfinal.helper.Base64Custon;
 import com.whatjaspionfinal.helper.Permissao;
 import com.whatjaspionfinal.helper.UsuarioFireBase;
+import com.whatjaspionfinal.model.Usuario;
 
 import java.io.ByteArrayOutputStream;
 import java.net.URL;
@@ -54,6 +56,8 @@ public class ConfiguracoesActivity extends AppCompatActivity {
     private StorageReference storageReference;
     private String identificadorUsuario;
     private EditText nomeUsuarioPerfil;
+    private ImageView atualizarNomeUsuario;
+    private Usuario usuarioLogado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +68,12 @@ public class ConfiguracoesActivity extends AppCompatActivity {
         imageButtonGaleria = findViewById(R.id.ibGaleria);
         circleImageViewPerfil = findViewById(R.id.circleImageViewFotoPerfil);
         nomeUsuarioPerfil = findViewById(R.id.etNomeUsuario);
+        atualizarNomeUsuario = findViewById(R.id.iAtualizarNome);
 
         storageReference = ConfiguracaoFirebase.getFireBaseStorage();
         identificadorUsuario = UsuarioFireBase.getIdentificadorUsuario();
 
+        usuarioLogado = UsuarioFireBase.getDadosUsuarioLogado();
 
         //validar permissoes
         Permissao.validarPermissoes(permissoesNecessarias, this,1);
@@ -115,6 +121,25 @@ public class ConfiguracoesActivity extends AppCompatActivity {
                 if (i.resolveActivity(getPackageManager()) != null){
                     startActivityForResult(i, SELECAO_GALERIA);
                 }
+            }
+        });
+
+        atualizarNomeUsuario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String nome = nomeUsuarioPerfil.getText().toString();
+                boolean retorno = UsuarioFireBase.atualizarNomeUsuario(nome);
+
+                if (retorno){
+                    usuarioLogado.setNome(nome);
+                    usuarioLogado.atualizar();
+
+                    Toast.makeText(ConfiguracoesActivity.this,
+                            "Nome alterado com sucesso",
+                            Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }
@@ -185,7 +210,16 @@ public class ConfiguracoesActivity extends AppCompatActivity {
     }
 
     public void atualizaFotoUsuario(Uri url){
-        UsuarioFireBase.atualizarFotoUsuario(url);
+        boolean retorno = UsuarioFireBase.atualizarFotoUsuario(url);
+
+        if (retorno){
+            usuarioLogado.setFoto(url.toString());
+            usuarioLogado.atualizar();
+
+            Toast.makeText(ConfiguracoesActivity.this,
+                    "Sucesso ao atualizar imagem",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
