@@ -17,15 +17,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.ChatActivity"
-            android:label="@string/title_activity_chat"
-            android:parentActivityName=".activity.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.whatjaspionfinal.activity.MainActivity" />
-        </activity>
-        <activity
             android:name=".activity.ConfiguracoesActivity"
             android:parentActivityName=".activity.MainActivity"></activity>
         <activity android:name=".activity.CadastroActivity" />

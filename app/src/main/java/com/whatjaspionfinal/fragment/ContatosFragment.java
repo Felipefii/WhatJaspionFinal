@@ -18,7 +18,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.whatjaspionfinal.R;
-import com.whatjaspionfinal.activity.ChatActivity;
 import com.whatjaspionfinal.adapter.ContatosAdapter;
 import com.whatjaspionfinal.config.ConfiguracaoFirebase;
 import com.whatjaspionfinal.helper.RecyclerItemClickListener;
@@ -71,8 +70,8 @@ public class ContatosFragment extends Fragment {
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-                                Intent i = new Intent(getActivity(), ChatActivity.class);
-                                startActivity(i);
+                                //Intent i = new Intent(getActivity(), ChatActivity.class);
+                                //startActivity(i);
                             }
 
                             @Override
@@ -109,16 +108,24 @@ public class ContatosFragment extends Fragment {
         valueEventListenerContatos = usuariosRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot dados: dataSnapshot.getChildren()){
 
-                    Usuario usuario = dados.getValue(Usuario.class);
-                    String emailUsuarioAtual = usuarioAtual.getEmail();
+                if (listaContatos.isEmpty()){
+                    for (DataSnapshot dados: dataSnapshot.getChildren()){
 
-                    if (!emailUsuarioAtual.equals(usuario.getEmail())){
-                        listaContatos.add(usuario);
+                        Usuario usuario = dados.getValue(Usuario.class);
+                        String emailUsuarioAtual = usuarioAtual.getEmail();
+
+                        if (!emailUsuarioAtual.equals(usuario.getEmail())){
+
+
+                            listaContatos.add(usuario);
+
+
+                        }
+
                     }
-
                 }
+
 
                 adapter.notifyDataSetChanged();
             }
