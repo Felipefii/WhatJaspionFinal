@@ -7,4 +7,5 @@
     <string name="app_digite_seu_nome">Digite seu nome</string>
     <string name="app_cadastrar">Cadastrar</string>
     <string name="app_nome_disponivel_apenas_para_usuario">Esse não é o seu nome de usuário nem senha. Esse nome será visível apenas para seus contatos do WhatJaspion</string>
+    <string name="title_activity_chat">ChatActivity</string>
 </resources>
