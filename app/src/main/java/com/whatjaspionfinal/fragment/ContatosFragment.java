@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.whatjaspionfinal.R;
+import com.whatjaspionfinal.activity.ChatActivity;
 import com.whatjaspionfinal.adapter.ContatosAdapter;
 import com.whatjaspionfinal.config.ConfiguracaoFirebase;
 import com.whatjaspionfinal.helper.RecyclerItemClickListener;
@@ -70,8 +71,8 @@ public class ContatosFragment extends Fragment {
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-                                //Intent i = new Intent(getActivity(), ChatActivity.class);
-                                //startActivity(i);
+                                Intent i = new Intent(getActivity(), ChatActivity.class);
+                                startActivity(i);
                             }
 
                             @Override
