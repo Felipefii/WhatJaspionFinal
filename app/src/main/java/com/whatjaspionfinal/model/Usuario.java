@@ -7,10 +7,11 @@ import com.whatjaspionfinal.activity.ConfiguracoesActivity;
 import com.whatjaspionfinal.config.ConfiguracaoFirebase;
 import com.whatjaspionfinal.helper.UsuarioFireBase;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Usuario {
+public class Usuario implements Serializable {
 
 
 
