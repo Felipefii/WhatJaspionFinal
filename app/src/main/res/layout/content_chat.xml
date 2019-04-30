@@ -39,7 +39,7 @@
             android:paddingRight="16dp">
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/editMensagem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -61,6 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
+            android:onClick="enviarMensagem"
             android:src="@drawable/ic_enviar_24dp"
             app:backgroundTint="@color/colorPrimary"
             app:fabSize="mini" />
