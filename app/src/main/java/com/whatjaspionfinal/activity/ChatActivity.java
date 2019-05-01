@@ -38,6 +38,7 @@ import com.whatjaspionfinal.adapter.MensagensAdapter;
 import com.whatjaspionfinal.config.ConfiguracaoFirebase;
 import com.whatjaspionfinal.helper.Base64Custon;
 import com.whatjaspionfinal.helper.UsuarioFireBase;
+import com.whatjaspionfinal.model.Conversa;
 import com.whatjaspionfinal.model.Mensagem;
 import com.whatjaspionfinal.model.Usuario;
 
@@ -210,6 +211,8 @@ public class ChatActivity extends AppCompatActivity {
                         //salvar para destinatario
                         salvarMensagem(idUsuarioDestinatario, idUsuarioRemetente, mensagem);
 
+
+
                     }
                 });
             }
@@ -231,11 +234,24 @@ public class ChatActivity extends AppCompatActivity {
             //Salvar mensagem para o destinatario
             salvarMensagem(idUsuarioDestinatario, idUsuarioRemetente, mensagem);
 
+
+            salvarConversa(mensagem);
         }else {
             Toast.makeText(ChatActivity.this,
                     "Digite uma mensagem para enviar!",
                     Toast.LENGTH_LONG).show();
         }
+
+    }
+
+    private void salvarConversa(Mensagem msg){
+        Conversa conversaRemetente = new Conversa();
+        conversaRemetente.setIdRemetente(idUsuarioRemetente);
+        conversaRemetente.setIdDestinatario(idUsuarioDestinatario);
+        conversaRemetente.setUltimaMensagem(msg.getMensagem());
+        conversaRemetente.setUsuarioExibicao(usuarioDestinatario);
+
+        conversaRemetente.salvar();
 
     }
 
