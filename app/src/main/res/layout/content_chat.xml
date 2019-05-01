@@ -10,7 +10,7 @@
     tools:showIn="@layout/activity_chat">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerViewTelaChat"
+        android:id="@+id/recyclerMensagens"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"

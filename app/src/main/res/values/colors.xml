@@ -3,4 +3,7 @@
     <color name="colorPrimary">#043F87</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#8FA4EC</color>
+    
+    <color name="balaoRemetente">#7CF5E7</color>
+    <color name="balaoDestinatario">#F5C1C1</color>
 </resources>
