@@ -16,6 +16,7 @@ import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 import com.whatjaspionfinal.R;
+import com.whatjaspionfinal.adapter.ContatosAdapter;
 import com.whatjaspionfinal.config.ConfiguracaoFirebase;
 import com.whatjaspionfinal.fragment.ContatosFragment;
 import com.whatjaspionfinal.fragment.ConversasFragment;
@@ -61,8 +62,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSearchViewClosed() {
-                ConversasFragment fragment = (ConversasFragment) adapter.getPage(0);
-                fragment.recarregarConversas();
+                ConversasFragment fragmentConversas = (ConversasFragment) adapter.getPage(0);
+                ContatosFragment fragmentContatos = (ContatosFragment) adapter.getPage(1);
+                fragmentConversas.recarregarConversas();
+                fragmentContatos.recarregarContatos();
             }
         });
 
@@ -78,12 +81,18 @@ public class MainActivity extends AppCompatActivity {
             public boolean onQueryTextChange(String newText) {
 //                Log.d("evento","onQueryChange");
 
-                ConversasFragment fragment = (ConversasFragment) adapter.getPage(0);
+                ConversasFragment fragmentConversas = (ConversasFragment) adapter.getPage(0);
+                ContatosFragment fragmentContatos = (ContatosFragment) adapter.getPage(1);
+
                 if (newText != null && !newText.isEmpty()){
-                    fragment.pesquisarConversas(newText.toLowerCase());
+                    fragmentConversas.pesquisarConversas(newText.toLowerCase());
+                    fragmentContatos.pesquisarContatos(newText.toLowerCase());
                 }else if (newText.equals("")){
-                    fragment.recarregarConversas();
+                    fragmentConversas.recarregarConversas();
+                    fragmentContatos.recarregarContatos();
                 }
+
+
                 return true;
             }
         });

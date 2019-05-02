@@ -20,12 +20,14 @@ import com.google.firebase.database.ValueEventListener;
 import com.whatjaspionfinal.R;
 import com.whatjaspionfinal.activity.ChatActivity;
 import com.whatjaspionfinal.adapter.ContatosAdapter;
+import com.whatjaspionfinal.adapter.ConversasAdapter;
 import com.whatjaspionfinal.config.ConfiguracaoFirebase;
 import com.whatjaspionfinal.helper.RecyclerItemClickListener;
 import com.whatjaspionfinal.helper.UsuarioFireBase;
 import com.whatjaspionfinal.model.Usuario;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -107,6 +109,26 @@ public class ContatosFragment extends Fragment {
     public void onStop() {
         super.onStop();
         usuariosRef.removeEventListener(valueEventListenerContatos);
+    }
+
+    public void pesquisarContatos(String texto){
+
+        List<Usuario> listContatosPesquisa = new ArrayList<>();
+        for(Usuario usuario: listaContatos){
+            String nome = usuario.getNome().toLowerCase();
+            if (nome.contains(texto)){
+                listContatosPesquisa.add(usuario);
+            }
+        }
+        adapter = new ContatosAdapter(listContatosPesquisa, getActivity());
+        recyclerViewListaContatos.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
+    public void recarregarContatos(){
+        adapter = new ContatosAdapter(listaContatos, getActivity());
+        recyclerViewListaContatos.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     public void recuperarContatos(){
