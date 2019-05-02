@@ -266,12 +266,16 @@ public class ChatActivity extends AppCompatActivity {
 
         //Limpar texto
         editMensagem.setText("");
+        recyclerMensagens.scrollToPosition(mensagens.size()-1);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        recuperarMensagem();
+        if (mensagens.isEmpty()){
+            recuperarMensagem();
+        }
+
     }
 
     @Override
@@ -284,6 +288,8 @@ public class ChatActivity extends AppCompatActivity {
         childEventListenerMensagens = mensagensRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                recyclerMensagens.scrollToPosition(mensagens.size());
 
                 Mensagem mensagem = dataSnapshot.getValue( Mensagem.class );
                 mensagens.add( mensagem );
